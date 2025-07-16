@@ -1,6 +1,8 @@
 const display=document.querySelector("#display");
 display.textContent="";
 const buttons=document.querySelectorAll(".cal-btn");
+
+
 const add=(a,b)=>a+b;
 const subtract=(a,b)=>a-b;
 const multiply=(a,b)=>a*b;
