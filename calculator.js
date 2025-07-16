@@ -4,9 +4,13 @@ const buttons=document.querySelectorAll(".cal-btn");
 const add=(a,b)=>a+b;
 const subtract=(a,b)=>a-b;
 const multiply=(a,b)=>a*b;
-const divide=(a,b)=>{
-    if (b===0) return "Error";
-    else return a/b;
+const divide = (a, b) => {
+    if (b === 0) {
+        num1 = num2 = currOperator = null;
+        shouldResetDisplay = true;
+        return "Error"; 
+    }
+    return a / b;
 };
 const power=(a,b)=>a**b;
 const modulo=(a,b)=>a%b;
@@ -57,6 +61,10 @@ const updateDisplay=(value)=>{
     display.textContent = displayContent + value;
 };
 const handleClick=function(value){
+    if (display.textContent === "Error" && value !== "C") {
+        display.textContent = "0";
+        shouldResetDisplay = false;
+    }
     if (!isNaN(value)|| value==="."){
         updateDisplay(value);
     } else if (value === "C") {
@@ -70,19 +78,19 @@ const handleClick=function(value){
         if (num1 && currOperator){
             num2=display.textContent;
             const result = operate(currOperator,num1,num2);
-            display.textContent=Number.isInteger(result)?result:result.toFixed(4);
-            num1=result;
+            display.textContent = result === "Error" ? "Error" :(Number.isInteger(result) ? result : result.toFixed(4));
+            num1 = result === "Error" ? null : result;
             currOperator=null;
             shouldResetDisplay=true;
         }
     } else{
-        if (currOperator && !shouldResetDisplay ){
-        num2=display.textContent;
-        const result=operate(currOperator,num1,num2);
-        display.textContent = Number.isInteger(result) ? result : result.toFixed(4);
-        num1 = result;
-        }else {
-            num1 = display.textContent;
+        if (currOperator && !shouldResetDisplay) {
+            num2 = display.textContent;
+            const result = operate(currOperator, num1, num2);
+            display.textContent = result === "Error" ? "Error" :(Number.isInteger(result) ? result : result.toFixed(4));
+            num1 = result === "Error" ? null : result;
+        } else {
+            num1 = display.textContent === "Error" ? null : display.textContent;
         }
         currOperator = value;
         shouldResetDisplay = true;      
