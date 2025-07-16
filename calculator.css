@@ -1,10 +1,14 @@
 body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0; 
     height:100vh;
     background: linear-gradient(to bottom right, #ffe6f0, #e7f0ff);
+}
+h1{
+    text-align: center;
 }
 #display{
     height:80px;
