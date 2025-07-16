@@ -30,7 +30,7 @@ const operate=function(operator,num1,num2){
         case "+":
             return add(num1,num2);
             break;
-        case "−":
+        case "-":
             return subtract(num1,num2);
             break;
         case "x":
